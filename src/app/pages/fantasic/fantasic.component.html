@@ -1,0 +1,66 @@
+<p>fantasic works!</p>
+<script>
+  
+    function setup() {
+      createCanvas(windowWidth * 0.9, windowHeight * 0.9);
+      rectMode(CENTER);
+      angleMode(DEGREES);
+      nrot = int(random(6, 20));
+    }
+    
+    function draw() {
+      background(10, 30, 40);
+      r = width / 10;
+      r2 = width / 5;
+      translate(width / 2, height / 2);
+      t = frameCount;
+      stroke(40, 70, 100);
+    
+      for (let i = 0; i < nrot; i++) {
+        push();
+        rotate((i * 360) / nrot + t / 4);
+        arc(r2, 0, r, r * cos(t), 0, 180);
+        pop();
+      }
+      for (let i = 0; i < nrot; i++) {
+        push();
+    
+        fill(255);
+        noStroke();
+        circle(
+          r2 * sin((i * 360) / nrot + t / 2),
+          r2 * cos((i * 360) / nrot + t / 2),
+          r / 3.5
+        );
+    
+        pop();
+      }
+      for (let i = 0; i < nrot; i++) {
+        push();
+        rotate((i * 360) / nrot);
+        arc(r2, 0, r, r * cos(t), 180, 360);
+        pop();
+      }
+    
+      border();
+    }
+    
+    function border() {
+      noFill();
+      stroke(20, 50, 60);
+      strokeWeight(4);
+      rect(0, 0, width - 20, height - 20);
+    }
+    
+    function mousePressed() {
+      frameCount = 0;
+      setup();
+      draw();
+    }
+    
+    function windowResized() {
+      resizeCanvas(windowWidth * 0.9, windowHeight * 0.9);
+    }
+    
+    </script>
+    
